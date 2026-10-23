@@ -1,0 +1,6 @@
+Number of classes K = 3
+Random-guess error level 1-1/K = 0.666667
+Weighted error = 0.333333
+Learner weight alpha = log((1-err)/err) + log(K-1) = 1.386294
+Initial weights sum to 1.000000
+Updated (normalised) weights sum to 1.000000

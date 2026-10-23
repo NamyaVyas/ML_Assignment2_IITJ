@@ -1,0 +1,12 @@
+Selected face (test position 9, dataset index 43, true identity 4)
+Selection rule: prefer a face where bagging and boosting differ on the masked image while both were right on the clean image.
+
+BAGGING (50 trees)
+  clean : prediction 4 | top votes: id 4: 28 votes, id 22: 4 votes, id 3: 2 votes
+  masked: prediction 4 | top votes: id 4: 10 votes, id 13: 8 votes, id 35: 7 votes
+  pairwise tree disagreement on this face: clean 0.684, masked 0.901
+BOOSTING (100 learners, sum alpha = 496.90)
+  clean : prediction 4 | top normalised weighted votes: id 4: 0.140, id 39: 0.068, id 25: 0.052
+  masked: prediction 33 | top normalised weighted votes: id 33: 0.107, id 3: 0.090, id 35: 0.070
+  learners voting for the true identity: clean 13, masked 6 (alpha mass: clean 69.62, masked 34.07)
+  largest single learner weight alpha = 6.996 (learner 3)

@@ -1,0 +1,7 @@
+method,learners,actual_learners,train_accuracy,val_accuracy,clean_test_accuracy,training_seconds
+"boosting (SAMME, depth 10)",25,25,1.0,0.7125,0.675,26.87315320968628
+"bagging (frozen tree, depth None)",25,25,1.0,0.825,0.7625,133.5588583946228
+"boosting (SAMME, depth 10)",50,50,1.0,0.725,0.7375,46.226194620132446
+"bagging (frozen tree, depth None)",50,50,1.0,0.8875,0.85,84.76890826225281
+"boosting (SAMME, depth 10)",100,100,1.0,0.8375,0.7625,92.10431098937988
+"bagging (frozen tree, depth None)",100,100,1.0,0.85,0.8875,157.6837935447693

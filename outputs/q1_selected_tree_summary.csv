@@ -1,0 +1,2 @@
+max_depth,min_samples_leaf,actual_depth,train_accuracy,val_accuracy,clean_test_accuracy,number_of_leaves,mean_samples_per_leaf,fraction_leaves_with_one_training_example,selected,masked_test_accuracy
+None,2,30,0.9708333333333333,0.575,0.5375,48,5.0,0.0,True,0.3

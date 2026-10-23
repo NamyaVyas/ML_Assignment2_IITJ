@@ -1,0 +1,220 @@
+Loaded 400 images. Seed = 26006
+Split sizes: train=240, validation=80, test=80
+Parallel workers for Q3: 3
+
+=== Q2(a): three-class SAMME example ===
+Toy SAMME round: error=0.3333 alpha=1.3863
+
+=== Q1: decision tree and bagging ===
+
+--- Q1(a) tree grid (selected tree marked) ---
+max_depth  min_samples_leaf  actual_depth  train_accuracy  val_accuracy  clean_test_accuracy  number_of_leaves  mean_samples_per_leaf  fraction_leaves_with_one_training_example  selected
+        2                 1             2          0.0750        0.0375               0.0625                 3                80.0000                                     0.0000     False
+        2                 2             2          0.0750        0.0375               0.0625                 3                80.0000                                     0.0000     False
+        2                 4             2          0.0750        0.0375               0.0625                 3                80.0000                                     0.0000     False
+        4                 1             4          0.1250        0.0750               0.1125                 5                48.0000                                     0.0000     False
+        4                 2             4          0.1250        0.0750               0.1125                 5                48.0000                                     0.0000     False
+        4                 4             4          0.1250        0.0750               0.1125                 5                48.0000                                     0.0000     False
+        8                 1             8          0.2500        0.1750               0.2125                10                24.0000                                     0.0000     False
+        8                 2             8          0.2500        0.1750               0.2125                10                24.0000                                     0.0000     False
+        8                 4             8          0.2500        0.1750               0.2125                10                24.0000                                     0.0000     False
+       16                 1            16          0.5167        0.3375               0.3500                22                10.9091                                     0.0455     False
+       16                 2            16          0.5125        0.3375               0.3500                22                10.9091                                     0.0000     False
+       16                 4            16          0.5083        0.3250               0.3500                21                11.4286                                     0.0000     False
+     None                 1            30          1.0000        0.5625               0.5500                48                 5.0000                                     0.1458     False
+     None                 2            30          0.9708        0.5750               0.5375                48                 5.0000                                     0.0000      True
+     None                 4            30          0.9625        0.5250               0.6250                41                 5.8537                                     0.0000     False
+Frozen tree: max_depth=None, min_samples_leaf=2
+  bagging B=1 done (2.4s)
+  bagging B=5 done (18.4s)
+  bagging B=10 done (48.4s)
+  bagging B=25 done (133.6s)
+  bagging B=50 done (84.8s)
+  bagging B=100 done (157.7s)
+  bagging B=200 done (288.5s)
+
+--- Q1(b,c) bagging results ---
+  B  train_accuracy  oob_accuracy  oob_examples_evaluated  val_accuracy  clean_test_accuracy  masked_test_accuracy  training_seconds  mean_distinct_training_examples  theoretical_expected_distinct  mean_pairwise_disagreement  mean_vote_margin  mean_test_confidence
+  1          0.6875        0.2935                      92        0.4625               0.4250                0.2750            2.4387                         148.0000                       151.8932                      0.0000            1.0000                1.0000
+  5          0.9500        0.2991                     214        0.6375               0.5375                0.3250           18.3703                         152.2000                       151.8932                      0.7913            0.2425                0.4500
+ 10          1.0000        0.3644                     236        0.7375               0.7125                0.4500           48.3808                         152.0000                       151.8932                      0.7778            0.2562                0.4525
+ 25          1.0000        0.5750                     240        0.8250               0.7625                0.4625          133.5589                         151.7600                       151.8932                      0.7820            0.2750                0.3945
+ 50          1.0000        0.7125                     240        0.8875               0.8500                0.7000           84.7689                         151.4200                       151.8932                      0.7892            0.2782                0.3900
+100          1.0000        0.7167                     240        0.8500               0.8875                0.5625          157.6838                         151.9400                       151.8932                      0.7896            0.2840                0.3811
+200          1.0000        0.7708                     240        0.8875               0.8375                0.7250          288.5111                         152.0500                       151.8932                      0.7828            0.2947                0.3816
+Selected bagging size: B=50
+
+--- Q1(d) single tree vs bagging, clean and masked ---
+      model test_type  accuracy  mean_confidence  mean_confidence_when_correct  mean_confidence_when_wrong
+single_tree     clean    0.5375           0.9812                        1.0000                      0.9595
+    bagging     clean    0.8500           0.3900                        0.4197                      0.2217
+single_tree    masked    0.3000           1.0000                        1.0000                      1.0000
+    bagging    masked    0.7000           0.2697                        0.3061                      0.1850
+
+--- Q1(d) selected example faces (tree prediction and bagging vote counts) ---
+test_type              case_type  original_dataset_index  true_identity  tree_prediction  tree_confidence  bag_prediction  bag_winning_votes  bag_votes_for_true_identity  bag_votes_for_tree_prediction  n_trees
+    clean bagging_corrected_tree                     262             26                3           1.0000              26                 42                           42                              0       50
+    clean bagging_corrected_tree                     375             37               25           1.0000              37                 27                           27                              3       50
+    clean             both_wrong                      96              9               39           1.0000              17                 21                            7                              3       50
+    clean             both_wrong                     350             35               12           1.0000               6                 17                           11                              0       50
+   masked bagging_corrected_tree                     262             26               13           1.0000              26                 24                           24                              6       50
+   masked bagging_corrected_tree                      67              6               13           1.0000               6                 18                           18                              4       50
+   masked             both_wrong                      96              9               13           1.0000              17                 14                            3                              6       50
+   masked             both_wrong                     128             12               13           1.0000              13                 14                           10                             14       50
+
+=== Q2: SAMME boosting ===
+  boosting depth=1 rounds=25 done
+  boosting depth=1 rounds=50 done
+  boosting depth=1 rounds=100 done
+  boosting depth=2 rounds=25 done
+  boosting depth=2 rounds=50 done
+  boosting depth=2 rounds=100 done
+  boosting depth=3 rounds=25 done
+  boosting depth=3 rounds=50 done
+  boosting depth=3 rounds=100 done
+  boosting depth=4 rounds=25 done
+  boosting depth=4 rounds=50 done
+  boosting depth=4 rounds=100 done
+  boosting depth=10 rounds=25 done
+  boosting depth=10 rounds=50 done
+  boosting depth=10 rounds=100 done
+
+--- Q2(b) boosting grid ---
+ depth  requested_rounds  actual_learners  train_accuracy  val_accuracy  clean_test_accuracy  training_seconds  selected
+     1                25               25          0.0500        0.0250               0.0375            2.7260     False
+     1                50               50          0.2292        0.1500               0.1750            5.0473     False
+     1               100              100          0.1708        0.1125               0.0875           10.3405     False
+     2                25               25          0.2125        0.0750               0.0875            5.0183     False
+     2                50               50          0.3042        0.1000               0.1500           10.9993     False
+     2               100              100          0.3458        0.1125               0.1250           20.0040     False
+     3                25               25          0.3375        0.1625               0.1500            8.3159     False
+     3                50               50          0.6917        0.2500               0.2375           15.1496     False
+     3               100              100          0.8208        0.3000               0.3625           30.5737     False
+     4                25               25          0.4792        0.2750               0.2625            9.8286     False
+     4                50               50          1.0000        0.4125               0.5125           19.8590     False
+     4               100              100          1.0000        0.3875               0.4875           41.0925     False
+    10                25               25          1.0000        0.7125               0.6750           26.8732     False
+    10                50               50          1.0000        0.7250               0.7375           46.2262     False
+    10               100              100          1.0000        0.8375               0.7625           92.1043      True
+Selected SAMME: depth=10, requested rounds=100, actual learners=100
+Stop reason: completed all requested rounds
+Heaviest training face: dataset index 94 (identity 9), max weight 0.2873 at round 10
+
+--- Q2(c) boosting vs bagging ---
+                           method  learners  actual_learners  train_accuracy  val_accuracy  clean_test_accuracy  training_seconds
+       boosting (SAMME, depth 10)        25               25          1.0000        0.7125               0.6750           26.8732
+bagging (frozen tree, depth None)        25               25          1.0000        0.8250               0.7625          133.5589
+       boosting (SAMME, depth 10)        50               50          1.0000        0.7250               0.7375           46.2262
+bagging (frozen tree, depth None)        50               50          1.0000        0.8875               0.8500           84.7689
+       boosting (SAMME, depth 10)       100              100          1.0000        0.8375               0.7625           92.1043
+bagging (frozen tree, depth None)       100              100          1.0000        0.8500               0.8875          157.6838
+
+--- Q2(d) all three models, clean vs masked ---
+      model test_type  accuracy  mean_winning_vote_or_probability  mean_confidence_when_correct  mean_confidence_when_wrong
+single_tree     clean    0.5375                            0.9812                        1.0000                      0.9595
+    bagging     clean    0.8500                            0.3900                        0.4197                      0.2217
+   boosting     clean    0.7625                            0.1799                        0.2017                      0.1100
+single_tree    masked    0.3000                            1.0000                        1.0000                      1.0000
+    bagging    masked    0.7000                            0.2697                        0.3061                      0.1850
+   boosting    masked    0.7000                            0.1604                        0.1805                      0.1136
+
+--- Q2(d) share of tree splits that use the masked patch ---
+      model  share_of_splits_in_masked_patch  alpha_weighted_share  patch_pixel_fraction
+single_tree                           0.0638                   NaN                0.0625
+    bagging                           0.0711                   NaN                0.0625
+   boosting                           0.0853                0.0857                0.0625
+Selected face (test position 9, dataset index 43, true identity 4)
+Selection rule: prefer a face where bagging and boosting differ on the masked image while both were right on the clean image.
+
+BAGGING (50 trees)
+  clean : prediction 4 | top votes: id 4: 28 votes, id 22: 4 votes, id 3: 2 votes
+  masked: prediction 4 | top votes: id 4: 10 votes, id 13: 8 votes, id 35: 7 votes
+  pairwise tree disagreement on this face: clean 0.684, masked 0.901
+BOOSTING (100 learners, sum alpha = 496.90)
+  clean : prediction 4 | top normalised weighted votes: id 4: 0.140, id 39: 0.068, id 25: 0.052
+  masked: prediction 33 | top normalised weighted votes: id 33: 0.107, id 3: 0.090, id 35: 0.070
+  learners voting for the true identity: clean 13, masked 6 (alpha mass: clean 69.62, masked 34.07)
+  largest single learner weight alpha = 6.996 (learner 3)
+
+=== Q3: bias and variance (30 refits) ===
+
+--- Q3(a) bias^2, variance and accuracy over 30 refits ---
+      model  resamples_used  bagging_trees  clean_bias_squared  clean_variance  clean_mean_test_accuracy  clean_std_test_accuracy  masked_bias_squared  masked_variance  masked_mean_test_accuracy  masked_std_test_accuracy
+single_tree              30            NaN              0.4202          0.6739                    0.4529                   0.0506               0.7199           0.7368                     0.2717                    0.1415
+    bagging              30        50.0000              0.5335          0.0316                    0.7275                   0.0464               0.7284           0.0370                     0.4521                    0.1602
+   boosting              30            NaN              0.7600          0.0192                    0.6308                   0.0547               0.8100           0.0250                     0.4217                    0.1202
+Depth experiment uses depths: [2, 8, 'None']
+
+--- Q3(b) depth comparison ---
+depth  is_selected_depth       model  resamples  bagging_trees_per_resample  bias_squared  variance  mean_test_accuracy  std_test_accuracy  mean_actual_tree_depth  mean_leaf_count  mean_samples_per_leaf  fraction_leaves_with_one_training_example  mean_pairwise_disagreement
+    2              False single_tree         30                           0        0.9106    0.0371              0.0629             0.0152                  2.0000           3.0667                52.3972                                     0.0000                      0.0000
+    2              False bagging_100         30                         100        0.9322    0.0107              0.1492             0.0420                  2.0000           3.1437                37.5943                                     0.0093                      0.9599
+    8              False single_tree         30                           0        0.7854    0.1312              0.1554             0.0214                  8.0000           9.1667                17.4607                                     0.0000                      0.0000
+    8              False bagging_100         30                         100        0.8062    0.0161              0.4563             0.0534                  8.0000          10.7500                11.0903                                     0.0341                      0.9289
+ None               True single_tree         30                           0        0.4083    0.6517              0.4700             0.0497                 34.7667          40.0000                 3.9942                                     0.0000                      0.0000
+ None               True bagging_100         30                         100        0.5296    0.0242              0.7600             0.0366                 36.0090          44.6573                 2.6232                                     0.0873                      0.8313
+
+--- Q3(b,c) what bagging removes at each depth ---
+depth  single_bias_squared  bagging_bias_squared  bias_change  single_variance  bagging_variance  variance_removed  variance_removed_percent  single_accuracy  bagging_accuracy  accuracy_gain  single_mean_leaves  single_fraction_singleton_leaves  bagging_disagreement
+    2               0.9106                0.9322       0.0216           0.0371            0.0107            0.0264                   71.0938           0.0629            0.1492         0.0862              3.0667                            0.0000                0.9599
+    8               0.7854                0.8062       0.0208           0.1312            0.0161            0.1151                   87.6985           0.1554            0.4563         0.3008              9.1667                            0.0000                0.9289
+ None               0.4083                0.5296       0.1212           0.6517            0.0242            0.6274                   96.2816           0.4700            0.7600         0.2900             40.0000                            0.0000                0.8313
+Largest bagging accuracy gain is at depth 8 (gain 0.3008); deepest tested depth is None -> the deepest tree does NOT give the largest gain
+
+--- Q3(d) FINAL TABLE (accuracy columns: frozen models; bias/variance: 30 refits) ---
+      model  clean_test_accuracy  masked_test_accuracy  accuracy_drop_from_mask  bias_squared  variance  refit_mean_clean_accuracy  refit_std_clean_accuracy  masked_bias_squared  masked_variance  refit_mean_masked_accuracy  refit_std_masked_accuracy
+single_tree               0.5375                0.3000                   0.2375        0.4202    0.6739                     0.4529                    0.0506               0.7199           0.7368                      0.2717                     0.1415
+    bagging               0.8500                0.7000                   0.1500        0.5335    0.0316                     0.7275                    0.0464               0.7284           0.0370                      0.4521                     0.1602
+   boosting               0.7625                0.7000                   0.0625        0.7600    0.0192                     0.6308                    0.0547               0.8100           0.0250                      0.4217                     0.1202
+
+All experiments finished.
+{
+  "seed": 26006,
+  "train_count": 240,
+  "validation_count": 80,
+  "test_count": 80,
+  "tree_max_depth": "None",
+  "tree_min_samples_leaf": 2,
+  "bagging_B": 50,
+  "boosting_depth": 10,
+  "boosting_requested_rounds": 100,
+  "boosting_actual_learners": 100,
+  "boosting_stop_reason": "completed all requested rounds",
+  "n_resamples": 30,
+  "mask": "rows and columns 24..39 set to 0",
+  "B_values": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    200
+  ],
+  "tree_depth_grid": [
+    2,
+    4,
+    8,
+    16,
+    "None"
+  ],
+  "tree_leaf_grid": [
+    1,
+    2,
+    4
+  ],
+  "boost_depth_grid": [
+    1,
+    2,
+    3,
+    4,
+    10
+  ],
+  "boost_rounds_grid": [
+    25,
+    50,
+    100
+  ],
+  "elapsed_seconds": 5323.200050115585
+}
+Check the outputs/ and figures/ folders before writing the report.

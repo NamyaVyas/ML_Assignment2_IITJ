@@ -1,0 +1,16 @@
+depth,requested_rounds,actual_learners,train_accuracy,val_accuracy,clean_test_accuracy,training_seconds,stop_reason,selected
+1,25,25,0.05,0.025,0.0375,2.725982189178467,completed all requested rounds,False
+1,50,50,0.22916666666666666,0.15,0.175,5.047330856323242,completed all requested rounds,False
+1,100,100,0.17083333333333334,0.1125,0.0875,10.340534687042236,completed all requested rounds,False
+2,25,25,0.2125,0.075,0.0875,5.018296718597412,completed all requested rounds,False
+2,50,50,0.30416666666666664,0.1,0.15,10.999270915985107,completed all requested rounds,False
+2,100,100,0.3458333333333333,0.1125,0.125,20.00396203994751,completed all requested rounds,False
+3,25,25,0.3375,0.1625,0.15,8.315853595733643,completed all requested rounds,False
+3,50,50,0.6916666666666667,0.25,0.2375,15.149641752243042,completed all requested rounds,False
+3,100,100,0.8208333333333333,0.3,0.3625,30.573683500289917,completed all requested rounds,False
+4,25,25,0.4791666666666667,0.275,0.2625,9.828622579574585,completed all requested rounds,False
+4,50,50,1.0,0.4125,0.5125,19.858965396881104,completed all requested rounds,False
+4,100,100,1.0,0.3875,0.4875,41.09249448776245,completed all requested rounds,False
+10,25,25,1.0,0.7125,0.675,26.87315320968628,completed all requested rounds,False
+10,50,50,1.0,0.725,0.7375,46.226194620132446,completed all requested rounds,False
+10,100,100,1.0,0.8375,0.7625,92.10431098937988,completed all requested rounds,True
